@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -u
+set -e
+
+RTL=$TOP/rtl
+BENCH=$TOP/bench
+
+verif() {
+	echo "VRFY $BENCH/verilog $1"
+	cd $BENCH/verilog
+	iverilog -y $RTL/verilog $1
+	./a.out | grep PASS > /dev/null
+}
+
+cleanup() {
+	rm a.out *.vcd
+}
+
+if ! (verif test.v); then
+	echo "FAIL"
+	exit 1
+fi
+
+(cd $BENCH/verilog && cleanup)
+
