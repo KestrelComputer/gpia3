@@ -1,5 +1,0 @@
-sudo: required
-dist: trusty
-before_install: sudo apt-get -qq install iverilog
-install: true
-script: true
