@@ -131,3 +131,19 @@ the BERI interrupt controller model is retained.
 
 **NOTE**: The BERI model defines a *thread ID* field to start at bit 8, and extend for a suitable number of bits appropriate for your ASIC or FPGA application.  The GPIA-III only supports a single hardware thread.  However, you can still use the GPIA-III with multiple hardware threads by simply routing specific IRQs to specific cores.
 
+## Notes on BERI Interrupt Controller Backward Compatibility
+
+Upon start-up or reset,
+all pins are configured as inputs,
+all interrupts are disabled,
+and all polarities are set to active-high.
+Provided no `P` or `D` configuration bits are changed,
+this should retain full backward compatibility
+with the BERI interrupt controller model.
+
+For compatibility with system software,
+you should configure the GPIA-III so that
+register window 1 appears immediately ahead of window 0.
+This will provide a compatible register layout
+as viewed by system software.
+
