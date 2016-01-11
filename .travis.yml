@@ -1,2 +1,2 @@
 install: true
-script: true
+script: false
