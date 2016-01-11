@@ -1,2 +1,4 @@
+sudo: required
+pre_install: sudo apt-get install iverilog
 install: true
-script: false
+script: true
