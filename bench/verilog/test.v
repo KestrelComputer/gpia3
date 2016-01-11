@@ -358,8 +358,9 @@ initial begin
 		$display("FAIL 48: a set Q must become 0"); $finish;
 	end
 
-	/* Given a reset GPIA, followed by a tgl-bit of '1', q_i MUST
- 	 * become '1'.
+	/* Given a reset GPIA with a set output bit,
+	 * followed by a tgl-bit of '1', q_i MUST
+ 	 * become '0'.
 	 */
 
 	waitclk;

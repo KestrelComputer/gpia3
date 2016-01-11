@@ -1,0 +1,8 @@
+#!/bin/bash
+
+set -u
+set -e
+
+SCRIPTS=$TOP/scripts
+
+($SCRIPTS/verify && git commit $*)
