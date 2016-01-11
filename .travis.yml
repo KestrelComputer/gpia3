@@ -1,4 +1,4 @@
 sudo: required
-pre_install: sudo apt-get -qq install iverilog
+before_install: sudo apt-get -qq install iverilog
 install: true
 script: true
