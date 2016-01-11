@@ -27,7 +27,6 @@ to Wishbone-compatible devices.
 
 * Up to 1024 inputs or outputs.
 * Up to 1024 software-configurable data-direction bits.
-* Address map has room for up to 1024 inputs or outputs.
 * Atomic set, clear, or toggle of any output.
 * Interrupt on any input or output, high or low level.
 * Up to 16 interrupts on a single hardware thread.
