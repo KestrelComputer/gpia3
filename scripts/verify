@@ -17,8 +17,8 @@ cleanup() {
 	rm a.out *.vcd
 }
 
-for x in GPIA_BIT GPIA_BYTE GPIA_DWORD; do
-	if ! (verif $x); then
+for x in BIT BYTE DWORD BIT_IN; do
+	if ! (verif GPIA_$x); then
 		echo "FAIL"
 		exit 1
 	fi
