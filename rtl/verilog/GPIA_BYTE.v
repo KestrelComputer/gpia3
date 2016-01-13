@@ -21,8 +21,6 @@ module GPIA_BYTE(
 	output	[7:0] q_o
 );
 
-reg [7:0] q_d;
-
 GPIA_BIT bit0(
 	.clk_i(clk_i),
 	.res_i(res_i),
