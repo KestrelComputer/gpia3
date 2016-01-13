@@ -1,8 +1,7 @@
 `timescale 1ns / 100ps
 
-/* This test module works by tickling various inputs over a sequence of time.
- * Each test scenario is uniquely identified by a number on the `scenario_o`
- * bus.
+/* This module describes a single GPIA-III output bit.  This bit's
+ * input would come from the Wishbone's data bus, input side.
  */
 
 module GPIA_BIT(
