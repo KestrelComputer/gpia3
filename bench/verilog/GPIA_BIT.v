@@ -376,6 +376,82 @@ initial begin
 		$display("FAIL 4C: a set Q must toggle to 0"); $finish;
 	end
 
+	/* Given a reset GPIA with clear output bit,
+	 * a reset STB input,
+	 * followed by a write of '1', q_i MUST
+ 	 * remain '0'.
+	 */
+
+	waitclk;
+	rst_o <= 1;
+	scenario_o <= 8'h50;
+	waitclk;
+	mode_o <= 0;
+	d_o <= 1;
+	stb_o <= 0;
+	waitclk;
+	#2;	/* let simulation catch up */
+	if(q_i != 0) begin
+		$display("FAIL 50: Q shouldn't be affected on masked write"); $finish;
+	end
+
+	/* Given a reset GPIA with clear output bit,
+	 * a reset STB input,
+	 * followed by a set-bit of '1', q_i MUST
+ 	 * remain '0'.
+	 */
+
+	waitclk;
+	rst_o <= 1;
+	scenario_o <= 8'h54;
+	waitclk;
+	mode_o <= 1;
+	d_o <= 1;
+	stb_o <= 0;
+	waitclk;
+	#2;	/* let simulation catch up */
+	if(q_i != 0) begin
+		$display("FAIL 54: Q shouldn't be affected on masked write"); $finish;
+	end
+
+	/* Given a reset GPIA with clear output bit,
+	 * a reset STB input,
+	 * followed by a clear-bit of '1', q_i MUST
+ 	 * remain '0'.
+	 */
+
+	waitclk;
+	rst_o <= 1;
+	scenario_o <= 8'h58;
+	waitclk;
+	mode_o <= 2;
+	d_o <= 1;
+	stb_o <= 0;
+	waitclk;
+	#2;	/* let simulation catch up */
+	if(q_i != 0) begin
+		$display("FAIL 58: Q shouldn't be affected on masked write"); $finish;
+	end
+
+	/* Given a reset GPIA with clear output bit,
+	 * a reset STB input,
+	 * followed by a toggle of '1', q_i MUST
+ 	 * remain '0'.
+	 */
+
+	waitclk;
+	rst_o <= 1;
+	scenario_o <= 8'h5C;
+	waitclk;
+	mode_o <= 0;
+	d_o <= 1;
+	stb_o <= 0;
+	waitclk;
+	#2;	/* let simulation catch up */
+	if(q_i != 0) begin
+		$display("FAIL 5C: Q shouldn't be affected on masked write"); $finish;
+	end
+
 	$display("PASS"); $finish;
 end
 
