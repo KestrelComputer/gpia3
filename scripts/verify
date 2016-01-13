@@ -7,9 +7,9 @@ RTL=$TOP/rtl
 BENCH=$TOP/bench
 
 verif() {
-	echo "VRFY $BENCH/verilog $1"
+	echo "VRFY $BENCH/verilog/$1.v"
 	cd $BENCH/verilog
-	iverilog -y $RTL/verilog $1
+	iverilog -y $RTL/verilog $1.v
 	./a.out | grep PASS > /dev/null
 }
 
@@ -17,10 +17,11 @@ cleanup() {
 	rm a.out *.vcd
 }
 
-if ! (verif test.v); then
-	echo "FAIL"
-	exit 1
-fi
+for x in GPIA_BIT GPIA_BYTE GPIA_DWORD; do
+	if ! (verif $x); then
+		echo "FAIL"
+		exit 1
+	fi
+done
 
 (cd $BENCH/verilog && cleanup)
-
