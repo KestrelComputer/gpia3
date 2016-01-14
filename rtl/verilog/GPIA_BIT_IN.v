@@ -17,6 +17,6 @@ module GPIA_BIT_IN(
 	output q_o
 );
 
-assign q_o = 0;
+assign q_o = stb_i & (ddr_i ? out_i : inp_i);
 
 endmodule

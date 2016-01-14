@@ -65,8 +65,109 @@ initial begin
 	@(posedge clk_o);
 	scenario_o <= 8'h10;
 	waitclk;
-	if(q_i != 0) begin
-		$display("FAIL 10: Q not 0"); $finish;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h14;
+	out_o <= 1;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h18;
+	inp_o <= 1;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h1C;
+	out_o <= 0;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	/* With stb_o high, we expect actual results, according to the
+	 * current value of ddr_o.
+	 *
+	 * We first exercise the circuit with DDR set to 0 (input).
+	 */
+
+	@(posedge clk_o);
+	scenario_o <= 8'h20;
+	stb_o <= 1;
+	inp_o <= 0;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h24;
+	out_o <= 1;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h28;
+	inp_o <= 1;
+	waitclk;
+	#2 if(q_i != 1) begin
+		$display("FAIL %x: Q not 1", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h2C;
+	out_o <= 0;
+	waitclk;
+	#2 if(q_i != 1) begin
+		$display("FAIL %x: Q not 1", scenario_o); $finish;
+	end
+
+	/* Next, we set the DDR to 1 (output), so Q should track
+	 * out_o instead of inp_o.
+	 */
+
+	@(posedge clk_o);
+	scenario_o <= 8'h30;
+	stb_o <= 1;
+	ddr_o <= 1;
+	inp_o <= 0;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h34;
+	out_o <= 1;
+	waitclk;
+	#2 if(q_i != 1) begin
+		$display("FAIL %x: Q not 1", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h38;
+	inp_o <= 1;
+	waitclk;
+	#2 if(q_i != 1) begin
+		$display("FAIL %x: Q not 1", scenario_o); $finish;
+	end
+
+	@(posedge clk_o);
+	scenario_o <= 8'h3C;
+	out_o <= 0;
+	waitclk;
+	#2 if(q_i != 0) begin
+		$display("FAIL %x: Q not 0", scenario_o); $finish;
 	end
 
 	$display("PASS"); $finish;
