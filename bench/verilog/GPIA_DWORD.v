@@ -19,7 +19,7 @@
  * stb_i inputs.
  */
 
-module test();
+module test_dword();
 
 reg clk_o;
 reg rst_o;

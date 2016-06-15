@@ -5,7 +5,7 @@
  * identified by a number on the `scenario_o` bus.
  */
 
-module test();
+module test_bit();
 
 reg clk_o;
 reg rst_o;

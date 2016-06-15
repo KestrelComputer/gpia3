@@ -16,7 +16,7 @@
  * - Toggle an arbitrary set of bits truth value in a single cycle.
  */
 
-module test();
+module test_byte();
 
 reg clk_o;
 reg rst_o;

@@ -8,7 +8,7 @@
  * read the current state of the external signal attached to it.
  */
 
-module test();
+module test_bit_in();
 
 reg out_o;
 reg inp_o;
